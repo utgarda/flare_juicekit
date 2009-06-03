@@ -598,31 +598,31 @@ package flare.vis.data
 		// -- Proxy Methods ---------------------------------------------------
 		
 		/** @private */
-		flash_proxy override function getProperty(name:*):*
+		flash.utils.flash_proxy override function getProperty(name:*):*
 		{
      return _list[name];
    }
     	
    /** @private */
-   flash_proxy override function setProperty(name:*, value:*):void
+   flash.utils.flash_proxy override function setProperty(name:*, value:*):void
    {
    	 this.setProperty(name, value);
    }
 		
 		/** @private */
-		flash_proxy override function nextNameIndex(idx:int):int
+		flash.utils.flash_proxy override function nextNameIndex(idx:int):int
 		{
 			return (idx < _list.length ? idx + 1 : 0);
 		}
 
 		/** @private */
-		flash_proxy override function nextName(idx:int):String
+		flash.utils.flash_proxy override function nextName(idx:int):String
 		{
 			return String(idx-1);
 		}
 		
 		/** @private */
-		flash_proxy override function nextValue(idx:int):*
+		flash.utils.flash_proxy override function nextValue(idx:int):*
 		{
 			return _list[idx-1];
 		}
