@@ -2,3 +2,6 @@
 *.swc
 .settings/
 target/
+flare.tests/
+flare.demos/
+flare.apps/

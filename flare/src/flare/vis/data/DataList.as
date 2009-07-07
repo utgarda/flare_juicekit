@@ -17,6 +17,8 @@ package flare.vis.data
 	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
+	
+	import mx.collections.ArrayCollection;
 
 	[Event(name="add",    type="flare.vis.events.DataEvent")]
 	[Event(name="remove", type="flare.vis.events.DataEvent")]
@@ -118,6 +120,7 @@ package flare.vis.data
 			} else {
 				_list.push(d);
 			}
+			dispatchEvent(new Event('changedDataList'));
 			return d;
 		}
 		
@@ -139,6 +142,7 @@ package flare.vis.data
 			Arrays.remove(_list, d);
 			delete _map[d];
 			_stats = {};	
+			dispatchEvent(new Event('changedDataList'));
 			return true;
 		}
 		
@@ -158,6 +162,7 @@ package flare.vis.data
 				delete _map[d];
 				_stats = {};
 			}
+			dispatchEvent(new Event('changedDataList'));
 			return d;
 		}
 		
@@ -172,6 +177,7 @@ package flare.vis.data
 			_map = new Dictionary();
 			_list = [];
 			_stats = {};
+			dispatchEvent(new Event('changedDataList'));
 			return true;
 		}
 		
@@ -190,6 +196,20 @@ package flare.vis.data
 			}
 			return a;
 		}
+
+		/**
+		 * Returns an ArrayCollection of data objects for each item in this 
+		 * data list. This ArrayCollection will trigger a binding event when 
+		 * items are added or removed from the list or if the list is cleared.
+		 * 
+		 * Data objects are retrieved from the "data" property for each item.
+		 * @return an ArrayCollection of data objects for items in this data list
+		 */
+		[Bindable(event="changedDataList")]
+    public function toDataArrayCollection():ArrayCollection {
+      return new ArrayCollection(this.toDataArray());
+    }
+
 		
 		/**
 		 * Creates a new adjacency matrix representing the connections between
@@ -287,6 +307,7 @@ package flare.vis.data
 			
 			var f:Function = Sort.$(args);
 			_list.sort(f);
+      dispatchEvent(new Event('changedDataList'));
 		}
 
 		// -- Visitation ------------------------------------------------------
@@ -397,6 +418,7 @@ package flare.vis.data
 				}
 				Property.$(name).setValue(o, value);
 			}
+			dispatchEvent(new Event('changedDataList'));
 		}
 		
 		// -- Set Values ------------------------------------------------------
@@ -433,6 +455,7 @@ package flare.vis.data
 			var trans:Transitioner = Transitioner.instance(t);
 			var f:Function = Filter.$(filter);
 			Arrays.setProperty(_list, name, value, f, trans);
+			dispatchEvent(new Event('changedDataList'));
 			return trans;
 		}
 		
@@ -468,6 +491,8 @@ package flare.vis.data
 			var f:Function = Filter.$(filter);
 			for (var name:String in vals)
 				Arrays.setProperty(_list, name, vals[name], f, trans);
+
+			dispatchEvent(new Event('changedDataList'));
 			return trans;
 		}
 		
@@ -575,14 +600,14 @@ package flare.vis.data
 		/** @private */
 		flash_proxy override function getProperty(name:*):*
 		{
-        	return _list[name];
-    	}
+     return _list[name];
+   }
     	
-    	/** @private */
-    	flash_proxy override function setProperty(name:*, value:*):void
-    	{
-    		this.setProperty(name, value);
-    	}
+   /** @private */
+   flash_proxy override function setProperty(name:*, value:*):void
+   {
+   	 this.setProperty(name, value);
+   }
 		
 		/** @private */
 		flash_proxy override function nextNameIndex(idx:int):int
