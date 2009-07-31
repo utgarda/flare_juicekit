@@ -107,6 +107,7 @@
 <classEntry path="flare.query.methods.not"/>
 <classEntry path="flare.query.methods.or"/>
 <classEntry path="flare.query.methods.orderby"/>
+<classEntry path="flare.query.methods.pctchange"/>
 <classEntry path="flare.query.methods.range"/>
 <classEntry path="flare.query.methods.select"/>
 <classEntry path="flare.query.methods.stddev"/>

@@ -499,7 +499,7 @@ package flare.util
 		 * 0: Zero placeholder
 		 * #: Digit placeholder
 		 * .: Decimal point (any duplicates are ignored)
-		 * ,: Thosand separator + scaling
+		 * ,: Thousand separator + scaling
 		 * %: Percentage placeholder
 		 * e/E: Scientific notation
 		 * 
