@@ -201,15 +201,16 @@ package flare.vis.operator.layout
 				}
 			});
 			
+			//http://sourceforge.net/forum/message.php?msg_id=5561646
 			if (_xStacks) {
 				_xBinding.scaleType = ScaleType.LINEAR;
-				_xBinding.preferredMin = xmin;
-				_xBinding.preferredMax = xmax;
+				//_xBinding.preferredMin = xmin;
+				//_xBinding.preferredMax = xmax;
 			}
 			if (_yStacks) {
 				_yBinding.scaleType = ScaleType.LINEAR;
-				_yBinding.preferredMin = ymin;
-				_yBinding.preferredMax = ymax;
+				//_yBinding.preferredMin = ymin;
+				//_yBinding.preferredMax = ymax;
 			}
 		}
 		
