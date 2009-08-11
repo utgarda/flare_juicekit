@@ -160,7 +160,14 @@ package flare.vis.data
 		 *  unsigned integer representing an ARGB color. Notice that this
 		 *  includes the alpha channel in the color value. */
 		public function get lineColor():uint { return _lineColor; }
-		public function set lineColor(c:uint):void { _lineColor = c; dirty(); }
+		public function set lineColor(c:uint):void {
+		  // no alpha component 
+		  if ((c & 0x000000) == 0) 
+		    _lineColor = Colors.setAlpha(c, Colors.a(_lineColor));
+		  else                   
+		    _lineColor = c;
+		  dirty();
+    }
 		/** The alpha channel (a value between 0 and 1) for the line color. */
 		public function get lineAlpha():Number { return Colors.a(_lineColor) / 255; }
 		public function set lineAlpha(a:Number):void {
