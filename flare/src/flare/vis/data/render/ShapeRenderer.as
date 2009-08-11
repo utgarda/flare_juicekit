@@ -59,8 +59,21 @@ package flare.vis.data.render
 				case Shapes.VERTICAL_BAR:
 					g.drawRect(-size/2, -d.h, size, d.h); 
 					break;
-				case Shapes.HORIZONTAL_BAR:
-					g.drawRect(-d.w, -size/2, d.w, size);
+				case Shapes.HORIZONTAL_BAR:		
+				  g.clear();
+				  const lw:Number = d.lineWidth;		 
+				  if (lw > 0) {
+  	        g.beginFill(d.lineColor, d.lineAlpha);
+  	        g.drawRect(-d.w, -size/2, d.w, size);
+				  }
+	        g.beginFill(d.fillColor, fillAlpha);
+	        if (d.w > 0) {
+	          g.drawRect(-d.w+lw, -size/2+lw, d.w-lw*2, size-lw*2);
+	        } 
+	        else {
+	          // Reversed bars
+	          g.drawRect(-d.w-lw, -size/2+lw, d.w+lw*2, size-lw*2);
+	        }         
 					break;
 				case Shapes.WEDGE:
 					Shapes.drawWedge(g, d.origin.x-d.x, d.origin.y-d.y,
