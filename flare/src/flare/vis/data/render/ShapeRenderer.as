@@ -40,6 +40,7 @@ package flare.vis.data.render
 			g.clear();
 			if (fillAlpha > 0) g.beginFill(d.fillColor, fillAlpha);
 			if (lineAlpha > 0) g.lineStyle(d.lineWidth, d.lineColor, lineAlpha);
+		  const lw:Number = d.lineWidth;		 
 			
 			switch (d.shape) {
 				case null:
@@ -57,11 +58,22 @@ package flare.vis.data.render
 											d.points.length/2, 0.15, true);
 					break;
 				case Shapes.VERTICAL_BAR:
-					g.drawRect(-size/2, -d.h, size, d.h); 
+				  g.clear();
+				  if (lw > 0) {
+  	        g.beginFill(d.lineColor, d.lineAlpha);
+  	        g.drawRect(-size/2, -d.h, size, d.h);
+				  }
+	        g.beginFill(d.fillColor, fillAlpha);
+	        if (d.h > 0) {
+            g.drawRect(-size/2+lw, -d.h+lw, size-lw*2, d.h-lw*2);
+	        } 
+	        else {
+	          // Reversed bars
+            g.drawRect(-size/2+lw, -d.h-lw, size-lw*2, d.h+lw*2);
+	        }         
 					break;
 				case Shapes.HORIZONTAL_BAR:		
 				  g.clear();
-				  const lw:Number = d.lineWidth;		 
 				  if (lw > 0) {
   	        g.beginFill(d.lineColor, d.lineAlpha);
   	        g.drawRect(-d.w, -size/2, d.w, size);
