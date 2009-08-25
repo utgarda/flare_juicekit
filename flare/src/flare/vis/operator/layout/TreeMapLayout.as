@@ -1,6 +1,5 @@
 package flare.vis.operator.layout
 {
-	import flare.animate.Transitioner;
 	import flare.util.Property;
 	import flare.vis.data.NodeSprite;
 	
@@ -38,6 +37,8 @@ package flare.vis.operator.layout
 		private var _row:Array  = new Array();
 		private var _r:Rectangle = new Rectangle();
 		
+		private var treemapScale:Number;
+		
 		private var _size:Property = Property.$("size");
 		
 		/** The property from which to access size values for leaf nodes. */
@@ -68,8 +69,8 @@ package flare.vis.operator.layout
 	        
 	        // layout root node
 	        var o:Object = _t.$(root);
-	        o.x = 0;//_r.x + _r.width/2;
-	        o.y = 0;//_r.y + _r.height/2;
+	        o.x = 0;
+	        o.y = 0;
 	        o.u = _r.x;
 	        o.v = _r.y;
 	        o.w = _r.width;
@@ -110,6 +111,7 @@ package flare.vis.operator.layout
 	        const rootArea:Number = root.props[AREA];
           if (!isNaN(rootArea) && rootArea !== 0) {
             const scale:Number = area / rootArea;
+            treemapScale = scale;
    	        root.visitTreeDepthFirst(function(n:NodeSprite):void {
    	        	n.props[AREA] *= scale;
    	        });
@@ -123,7 +125,9 @@ package flare.vis.operator.layout
 	    {
 	        // create sorted list of children's properties
 	        for (var i:uint = 0; i < p.childDegree; ++i) {
-	        	_kids.push(p.getChildNode(i).props);
+	        	var c:NodeSprite = p.getChildNode(i);
+	        	c.props[AREA] *= (r.height*r.width/(treemapScale * _size.getValue(_t.$(p))));
+	        	_kids.push(c.props);
 	        }
 	        _kids.sortOn(AREA, Array.NUMERIC);
 	        // update array to point to sprites, not props
@@ -138,21 +142,26 @@ package flare.vis.operator.layout
 	        
 	        // recurse
 	        for (i=0; i<p.childDegree; ++i) {
-	        	var c:NodeSprite = p.getChildNode(i);
+	        	c = p.getChildNode(i);
+	        	updateArea(c, r);
 	        	if (c.childDegree > 0) {
-	        		updateArea(c, r);
+	        		
 	        		doLayout(c, r);
 	        	}
 	        }
 	    }
 	    
+	     /**
+       * Compute areas and adjust for the width of the frames.
+       */
 	    private function updateArea(n:NodeSprite, r:Rectangle):void
 	    {
 	    	var o:Object = _t.$(n);
-			r.x = o.u;
-			r.y = o.v;
-			r.width = o.w;
-			r.height = o.h;
+			r.x = o.u = o.w > n.lineWidth ? o.u + n.lineWidth/2: o.u;
+			r.y = o.v = o.v > n.lineWidth ? o.v + n.lineWidth/2: o.v;
+			r.width = o.w = o.w > n.lineWidth ? o.w - n.lineWidth : 0;
+			r.height = o.h = o.h > n.lineWidth ? o.h - n.lineWidth : 0;
+			
 			return;
 			
 			/*
@@ -198,8 +207,13 @@ package flare.vis.operator.layout
 	            var item:NodeSprite = c[len-1];
 				var a:Number = item.props[AREA];
 	            if (a <= 0.0) {
+	            	var o:Object = _t.$(item);
+	            	item.visible=false;
 	            	c.pop();
 	                continue;
+	            }
+	            else {
+	            	item.visible=true;
 	            }
 	            row.push(item);
 	            

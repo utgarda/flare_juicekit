@@ -4,6 +4,7 @@ package flare.vis.data.render
 	import flare.vis.data.DataSprite;
 	
 	import flash.display.Graphics;
+	import flash.display.JointStyle;
 
 	/**
 	 * Renderer that draws shapes. The ShapeRender uses a ShapePalette instance
@@ -34,6 +35,8 @@ package flare.vis.data.render
 		{
 			var lineAlpha:Number = d.lineAlpha;
 			var fillAlpha:Number = d.fillAlpha;
+      var lineColor:Number = d.lineColor;
+      var fillColor:Number = d.fillColor;
 			var size:Number = d.size * defaultSize;
 			
 			var g:Graphics = d.graphics;
@@ -45,8 +48,33 @@ package flare.vis.data.render
 			switch (d.shape) {
 				case null:
 					break;
+				
+        case Shapes.TREEMAPBLOCK:
+        // This draws a rectangle inside of a rectangle.  
+        // This serves as a replacement for Shapes.BLOCK
+        // This behaves in an identical fashion to the original flash line border 
+        // in that the borders are drawn on the outside of the shape.
+        // Shapes are scaled down by the amount of the linewidth area in the 
+        // treemap layout to achieve smooth treemap nirvana.
+          g.lineStyle(0.0, 0, 0);
+          if (lineColor == 0xffffff && lineAlpha == 1.0) {
+            g.beginFill(lineColor, 0.99); 
+          } else {
+            g.beginFill(lineColor, lineAlpha);  
+          }
+          g.drawRect(d.u-d.x-d.lineWidth/2, d.v-d.y-d.lineWidth/2, d.w+d.lineWidth, d.h+d.lineWidth);
+          // Rectangles with a white (0xffffffff) fill are rendered as transparent in flash graphics.
+          // We slightly decrease the alpha in these cases to avoid errors.
+          if (fillColor == 0xffffff && fillAlpha == 1.0) {
+            g.beginFill(fillColor, 0.99); 
+          } else {
+            g.beginFill(fillColor, fillAlpha);  
+          }
+          g.drawRect(d.u-d.x, d.v-d.y, d.w, d.h);
+          break;
+
 				case Shapes.BLOCK:
-					g.drawRect(d.u-d.x, d.v-d.y, d.w, d.h);
+          g.drawRect(d.u-d.x, d.v-d.y, d.w, d.h);
 					break;
 				case Shapes.POLYGON:
 					if (d.points!=null)

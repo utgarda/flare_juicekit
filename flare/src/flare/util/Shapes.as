@@ -29,6 +29,8 @@ package flare.util
 		/** Constant indicating a B-spline. */
 		public static const BSPLINE:String = "bspline";
 		
+    /** Constant indicating a new rectangular block shape. */
+    public static const TREEMAPBLOCK:String = "treemapblock";
 		/** Constant indicating a rectangular block shape. */
 		public static const BLOCK:String = "block";
 		/** Constant indicating a polygon shape. */
