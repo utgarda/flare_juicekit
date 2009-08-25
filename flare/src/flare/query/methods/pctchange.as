@@ -14,6 +14,6 @@ package flare.query.methods
    */
   public function pctchange(newval:*, oldval:*):Arithmetic
 	{
-		return Arithmetic.Divide(Arithmetic.Subtract(newval, oldval), oldval);
+		return Arithmetic.Divide(Arithmetic.Subtract(sum(newval), sum(oldval)), sum(oldval));
 	}
 }
