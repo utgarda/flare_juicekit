@@ -157,8 +157,8 @@ package flare.vis.operator.layout
 	    private function updateArea(n:NodeSprite, r:Rectangle):void
 	    {
 	    	var o:Object = _t.$(n);
-			r.x = o.u = o.w > n.lineWidth ? o.u + n.lineWidth/2: o.u;
-			r.y = o.v = o.v > n.lineWidth ? o.v + n.lineWidth/2: o.v;
+			r.x = o.u = o.u + n.lineWidth/2;
+			r.y = o.v = o.v + n.lineWidth/2;
 			r.width = o.w = o.w > n.lineWidth ? o.w - n.lineWidth : 0;
 			r.height = o.h = o.h > n.lineWidth ? o.h - n.lineWidth : 0;
 			
