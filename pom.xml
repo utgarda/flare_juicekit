@@ -4,9 +4,10 @@
   <parent>
     <groupId>org.juicekit</groupId>
     <artifactId>juicekit</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.2.0</version>
   </parent>
   <artifactId>flare</artifactId>
+  <version>1.2.0</version>
   <name>prefuse Flare (Juice, Inc.)</name>
   <packaging>swc</packaging>
 
