@@ -57,9 +57,9 @@
   </dependencies>
 
   <scm>
-    <connection>scm:git:git://github.com/jonbuffington/flare_juicekit.git</connection>
-    <developerConnection>scm:git:git@github.com:jonbuffington/flare_juicekit.git</developerConnection>
-    <url>http://github.com/jonbuffington/flare_juicekit/tree/master</url>
+    <connection>scm:git:git://github.com/chrisgemignani/flare_juicekit.git</connection>
+    <developerConnection>scm:git:git@github.com:chrisgemignani/flare_juicekit.git</developerConnection>
+    <url>http://github.com/chrisgemignani/flare_juicekit/tree/master</url>
   </scm>
 
 </project>
