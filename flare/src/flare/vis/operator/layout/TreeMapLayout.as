@@ -208,12 +208,12 @@ package flare.vis.operator.layout
 				var a:Number = item.props[AREA];
 	            if (a <= 0.0) {
 	            	var o:Object = _t.$(item);
-	            	item.visible=false;
+//	            	item.visible=false;
 	            	c.pop();
 	                continue;
 	            }
 	            else {
-	            	item.visible=true;
+//	            	item.visible=true;
 	            }
 	            row.push(item);
 	            
