@@ -17,6 +17,8 @@ package flare.vis.legend
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 	
+	import mx.core.UIComponent;
+	
 	/**
 	 * A legend describing the visual encoding of a data property. Legends
 	 * support both discrete legends that list individual items and
@@ -52,7 +54,7 @@ package flare.vis.legend
 	 * See the documentation for the <code>buildFromValues</code> method
 	 * for more details.</p>
 	 */
-	public class Legend extends Sprite
+	public class Legend extends UIComponent
 	{
 		/** @private The layout bounds for this legend instance. */
 		protected var _bounds:Rectangle = null;
