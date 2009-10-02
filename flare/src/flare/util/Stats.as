@@ -28,6 +28,8 @@ package flare.util
 		
 		private var _min:Number = Number.MAX_VALUE;
 		private var _max:Number = Number.MIN_VALUE;
+		private var _percentileHigh:Number = Number.MAX_VALUE;
+    private var _percentileLow:Number = Number.MIN_VALUE;
 		private var _sum:Number = 0;
 		private var _stdev:Number = 0;
 		
@@ -52,6 +54,10 @@ package flare.util
 		public function get minimum():Number { return _min; }
 		/** The maximum value (for numerical data). */
 		public function get maximum():Number { return _max; }
+    /** The 0.05 percentile value (for numerical data). */
+    public function get percentileLow():Number { return _percentileLow; }
+    /** The 0.95 percentile value (for numerical data). */
+    public function get percentileHigh():Number { return _percentileHigh; }
 		/** The sum of all the values (for numerical data). */
 		public function get sum():Number { return _sum; }
 		/** The average of all the values (for numerical data). */
@@ -147,6 +153,14 @@ package flare.util
 			var N:int = _num-1;
 			if (_type == NUMBER)
 			{
+				
+				//Calculate the 5th and the 95th percentile of the data
+				var plow:Number = .025 * N;
+				var phigh:Number = .975 * N;
+				
+				_percentileLow = (plow - Math.floor(plow)) * _elm[Math.ceil(plow) as int] + (Math.ceil(plow) - plow) * _elm[Math.floor(plow) as int];
+				_percentileHigh = (phigh - Math.floor(phigh)) * _elm[Math.ceil(phigh) as int] + (Math.ceil(phigh) - phigh) * _elm[Math.floor(phigh) as int];
+				
 				_min = (_minObject = _elm[0]) as Number;
 				_max = (_maxObject = _elm[N]) as Number;
 				

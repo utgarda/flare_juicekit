@@ -14,6 +14,8 @@ package flare.scale
 		public static const ORDINAL:String = "ordinal";
 		/** Constant indicating a linear numeric scale. */
 		public static const LINEAR:String = "linear";
+		/** Constant indicating a linear numeric scale with the min and max at the 10th and 90th percentiles. */
+    public static const LINEAR_PERCENTILE10:String = "linear_percentile10";
 		/** Constant indicating a root-transformed numeric scale. */
 		public static const ROOT:String = "root";
 		/** Constant indicating a log-transformed numeric scale. */
@@ -48,7 +50,7 @@ package flare.scale
 		 */
 		public static function isQuantitative(type:String):Boolean
 		{
-			return type==LINEAR || type==ROOT || type==LOG;
+			return type==LINEAR || type==LINEAR_PERCENTILE10 || type==ROOT || type==LOG;
 		}
 		
 	} // end of class ScaleType
