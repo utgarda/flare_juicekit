@@ -1,65 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.juicekit</groupId>
-    <artifactId>juicekit</artifactId>
-    <version>1.2.0</version>
-  </parent>
-  <artifactId>flare</artifactId>
-  <name>prefuse Flare (Juice, Inc.)</name>
-  <packaging>swc</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jucekit</groupId>
+    <artifactId>flare</artifactId>
+    <version>1.2.2-SNAPSHOT</version>
+    <name>prefuse Flare (Juice, Inc.)</name>
+    <packaging>swc</packaging>
 
-  <build>
-    <sourceDirectory>flare/src</sourceDirectory>
-    <plugins>
-      <plugin>
-        <groupId>org.sonatype.flexmojos</groupId>
-        <artifactId>flexmojos-maven-plugin</artifactId>
-        <configuration>
-          <includeSources>
-            <source>${project.build.sourceDirectory}/../lib</source>
-            <source>${project.build.sourceDirectory}</source>
-          </includeSources>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+    <properties>
+        <flexmojos.version>3.4.2</flexmojos.version>
+        <!--<flex_sdk.version>3.3.0.4852</flex_sdk.version>-->
+        <!--<flex_sdk.version>3.4.0.9271</flex_sdk.version>-->
+        <flex_sdk.version>4.0.0.12575</flex_sdk.version>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.sonatype.flexmojos</groupId>
-        <artifactId>flexmojos-maven-plugin</artifactId>
-        <version>${flexmojos.version}</version>
-        <configuration>
-          <docSources>
-            <docSource>
-              ${project.build.sourceDirectory}/../lib
-            </docSource>
-            <docSource>${project.build.sourceDirectory}</docSource>
-          </docSources>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.adobe.flex.framework</groupId>
-      <artifactId>flex-framework</artifactId>
-      <type>pom</type>
-    </dependency>
-  </dependencies>
 
-  <scm>
-    <connection>scm:git:git://github.com/chrisgemignani/flare_juicekit.git</connection>
-    <developerConnection>scm:git:git@github.com:chrisgemignani/flare_juicekit.git</developerConnection>
-    <url>http://github.com/chrisgemignani/flare_juicekit/tree/master</url>
-  </scm>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonatype.flexmojos</groupId>
+                    <artifactId>flexmojos-maven-plugin</artifactId>
+                    <version>${flexmojos.version}</version>
+                    <extensions>true</extensions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.adobe.flex</groupId>
+                            <artifactId>compiler</artifactId>
+                            <version>${flex_sdk.version}</version>
+                            <type>pom</type>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <sourceDirectory>flare/src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.flexmojos</groupId>
+                <artifactId>flexmojos-maven-plugin</artifactId>
+                <configuration>
+                    <includeSources>
+                        <source>${project.build.sourceDirectory}/../lib</source>
+                        <source>${project.build.sourceDirectory}</source>
+                    </includeSources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.flexmojos</groupId>
+                <artifactId>flexmojos-maven-plugin</artifactId>
+                <configuration>
+                    <docSources>
+                        <docSource>
+                            ${project.build.sourceDirectory}/../lib
+                        </docSource>
+                        <docSource>${project.build.sourceDirectory}</docSource>
+                    </docSources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>flex-framework</artifactId>
+            <version>${flex_sdk.version}</version>
+            <type>pom</type>
+        </dependency>
+    </dependencies>
+
+    <!--<scm>-->
+    <!--<connection>scm:git:git://github.com/chrisgemignani/flare_juicekit.git</connection>-->
+    <!--<developerConnection>scm:git:git@github.com:chrisgemignani/flare_juicekit.git</developerConnection>-->
+    <!--<url>http://github.com/chrisgemignani/flare_juicekit/tree/master</url>-->
+    <!--</scm>-->
 
 </project>

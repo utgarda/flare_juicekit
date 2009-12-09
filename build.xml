@@ -5,10 +5,12 @@
   <!-- Import Flex Ant Tasks, Set Flex Home and asdoc                      -->
   <!-- =================================================================== -->
   <property name="LOCALE" value="en_US"/>
-  <property name="FLEX_HOME" value="C:/pkg/flex/"/>
-  <property name="asdoc" value="${FLEX_HOME}bin/asdoc.exe"/>
+  <property environment="env"/>
+  <!--Set your environment variable FLEX_HOME or just inline the path to your flex sdk-->
+  <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
+  <property name="asdoc" value="${FLEX_HOME}/bin/asdoc.exe"/>
   <taskdef resource="flexTasks.tasks"
-           classpath="${FLEX_HOME}ant/lib/flexTasks.jar" />
+           classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
 
   <!-- =================================================================== -->
   <!-- Properties                                                          -->
@@ -81,10 +83,10 @@
         <include name="**/**"/>
       </fileset>
     </path>
-    <pathconvert 
-      property="flare.classes" 
-      pathsep=" " 
-      dirsep="." 
+    <pathconvert
+      property="flare.classes"
+      pathsep=" "
+      dirsep="."
       refid="flare.files">
       <map from="${flare.src}/" to=""/>
       <mapper>
@@ -124,7 +126,7 @@
       <compiler.library-path dir="${build.dir}">
         <include name="flare.swc"/>
       </compiler.library-path>
-      <compiler.library-path dir="${FLEX_HOME}frameworks/libs">
+      <compiler.library-path dir="${FLEX_HOME}/frameworks/libs">
         <include name="framework.swc"/>
       </compiler.library-path>
     </mxmlc>
@@ -170,7 +172,7 @@
   <!-- =================================================================== -->
   <target name="docs">
     <exec executable="${asdoc}">
-      <arg value="-output=${api.dir}"/> 
+      <arg value="-output=${api.dir}"/>
       <arg value="-doc-sources=${doc.source}"/>
       <arg value="-main-title=${doc.title}"/>
       <arg value="-window-title=${doc.title}"/>
