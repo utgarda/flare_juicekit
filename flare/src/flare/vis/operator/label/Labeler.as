@@ -12,6 +12,8 @@ package flare.vis.operator.label
 	
 	import flash.display.Sprite;
 	import flash.text.TextFormat;
+	
+	import mx.core.UIComponent;
 
 	/**
 	 * Labeler that adds labels for items in a visualization. By default, this
@@ -52,7 +54,7 @@ package flare.vis.operator.label
 		/** @private */
 		protected var _policy:String;
 		/** @private */
-		protected var _labels:Sprite;
+		protected var _labels:UIComponent;
 		/** @private */
 		protected var _group:String;
 		/** @private */
@@ -166,7 +168,7 @@ package flare.vis.operator.label
 			if (_policy == LAYER) {
 				_labels = visualization.labels;
 				if (_labels == null) {
-					_labels = new Sprite();
+					_labels = new UIComponent();
 					_labels.mouseChildren = false;
 					_labels.mouseEnabled = false;
 					visualization.labels = _labels;
@@ -178,7 +180,7 @@ package flare.vis.operator.label
 		public override function operate(t:Transitioner=null):void
 		{
 			_t = (t ? t : Transitioner.DEFAULT);
-			visualization.data.visit(process, group, filter);
+			visualization.flareData.visit(process, group, filter);
 			_t = null;
 		}
 		

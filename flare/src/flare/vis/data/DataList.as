@@ -192,7 +192,7 @@ package flare.vis.data
 		{
 			var a:Array = new Array(_list.length);
 			for (var i:int=0; i<a.length; ++i) {
-				a[i] = _list[i].data;
+				a[i] = _list[i].flaredata;
 			}
 			return a;
 		}

@@ -30,7 +30,7 @@ package flare.analytics.cluster
 		/** @inheritDoc */
 		public override function operate(t:Transitioner=null):void
 		{
-			calculate(visualization.data.group(group), edgeWeights);
+			calculate(visualization.flareData.group(group), edgeWeights);
 		}
 		
 		/**

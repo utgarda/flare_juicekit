@@ -25,7 +25,7 @@ package flare.vis.operator.layout
 		protected override function layout():void
 		{
 			var r:Rectangle = layoutBounds;
-			visualization.data.visit(function(d:DataSprite):void
+			visualization.flareData.visit(function(d:DataSprite):void
 			{
 				var o:Object = _t.$(d);
 				o.x = r.x + r.width * Math.random();

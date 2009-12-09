@@ -73,13 +73,13 @@ package flare.vis.operator.filter
 			t = (t==null ? Transitioner.DEFAULT : t);
 			
 			if (immediate) {
-				visualization.data.visit(function(d:DataSprite):void {
+				visualization.flareData.visit(function(d:DataSprite):void {
 					var visible:Boolean = predicate(d);
 					d.alpha = visible ? 1 : 0;
 					d.visible = visible;
 				}, group, filter);
 			} else {
-				visualization.data.visit(function(d:DataSprite):void {
+				visualization.flareData.visit(function(d:DataSprite):void {
 					var visible:Boolean = predicate(d);
 					t.$(d).alpha = visible ? 1 : 0;
 					t.$(d).visible = visible;

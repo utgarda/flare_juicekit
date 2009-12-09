@@ -84,7 +84,7 @@ package flare.vis.operator.filter
 			}
 			
 			// now set visibility based on traversal results
-	        visualization.data.visit(function(ds:DataSprite):void {
+	        visualization.flareData.visit(function(ds:DataSprite):void {
 	        	var visible:Boolean = (depths[ds] != undefined);
 	        	var alpha:Number = visible ? 1 : 0;
 				var obj:Object = t.$(ds);

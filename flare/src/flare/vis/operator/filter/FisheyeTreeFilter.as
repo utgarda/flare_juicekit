@@ -60,7 +60,7 @@ package flare.vis.operator.filter
         	_root = tree.root;
         
 	        // mark the items
-	        visualization.data.visit(function(ds:DataSprite):void {
+	        visualization.flareData.visit(function(ds:DataSprite):void {
 	        	ds.props.doi = -Number.MAX_VALUE;
 	        });
 	        
@@ -71,7 +71,7 @@ package flare.vis.operator.filter
 	        visitFocus(_root, null);
 	
 	        // mark unreached items
-	        visualization.data.visit(function(ds:DataSprite):void {
+	        visualization.flareData.visit(function(ds:DataSprite):void {
 	        	if (ds.props.doi == -Number.MAX_VALUE)
 	        		setVisibility(ds, false);
 	        });

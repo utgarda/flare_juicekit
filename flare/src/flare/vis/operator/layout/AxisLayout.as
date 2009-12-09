@@ -96,8 +96,8 @@ package flare.vis.operator.layout
 		public override function setup():void
 		{
 			if (visualization==null) return;
-			_xBinding.data = visualization.data;
-			_yBinding.data = visualization.data;
+			_xBinding.data = visualization.flareData;
+			_yBinding.data = visualization.flareData;
 			
 			var axes:CartesianAxes = super.xyAxes;
 			axes.xAxis.axisScale = _xBinding;
@@ -123,7 +123,7 @@ package flare.vis.operator.layout
 			var ymapPos:Object = _yStacks ? new Object() : null;
 			var ymapNeg:Object = _yStacks ? new Object() : null;
 			
-			visualization.data.nodes.visit(function(d:DataSprite):void {
+			visualization.flareData.nodes.visit(function(d:DataSprite):void {
 				var dx:Object, dy:Object, x:Number, y:Number, s:Number, z:Number;
 				var o:Object = _t.$(d);
 				dx = _xField.getValue(d); dy = _yField.getValue(d);
@@ -171,7 +171,7 @@ package flare.vis.operator.layout
 			var ymax:Number = 0;
 			var ymin:Number = 0;
 			
-			visualization.data.nodes.visit(function(d:DataSprite):void {
+			visualization.flareData.nodes.visit(function(d:DataSprite):void {
 				var x:Object = _xField.getValue(d);
 				var y:Object = _yField.getValue(d);
 				var v:Number;

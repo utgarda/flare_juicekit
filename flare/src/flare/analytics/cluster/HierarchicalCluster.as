@@ -107,7 +107,7 @@ package flare.analytics.cluster
 			var helper:Function = function(n:NodeSprite):void
 			{
 				var nn:NodeSprite;
-				if (n.childDegree && n.data.merge > merge)
+				if (n.childDegree && n.flaredata.merge > merge)
 				{
 					for (var i:int=0; i<n.childDegree; ++i)
 						helper(n.getChildNode(i));
@@ -147,7 +147,7 @@ package flare.analytics.cluster
 			// populate the leaf notes
 			for (i=0; i<_size; ++i) {
 				map[i] = (p = new NodeSprite());
-				p.data = list[i].data;
+				p.flaredata = list[i].flaredata;
 				p.props.node = list[i];
 				p.props.size = 0;
 			}
@@ -166,8 +166,8 @@ package flare.analytics.cluster
 					p.addChildEdge(new EdgeSprite(p, r));
 					p.addChildEdge(new EdgeSprite(p, l));
 				}
-				p.data.merge = ii + 1;
-				p.data.criterion = _qvals[ii];
+				p.flaredata.merge = ii + 1;
+				p.flaredata.criterion = _qvals[ii];
 				p.props.size = 2 + l.props.size + r.props.size;
 				delete map[j];
 			}
@@ -182,7 +182,7 @@ package flare.analytics.cluster
 				p = NodeSprite(roots[0]);
 			} else {
 				p = new NodeSprite();
-				p.data.merge = ii;
+				p.flaredata.merge = ii;
 				for each (n in roots) {
 					p.addChildEdge(new EdgeSprite(p, n));
 				}

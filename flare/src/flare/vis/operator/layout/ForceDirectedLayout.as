@@ -107,7 +107,7 @@ package flare.vis.operator.layout
 			for (var i:uint=0; i<_iter; ++i) {
 				_sim.tick(_step);
 			}
-			visualization.data.nodes.visit(update); // update positions
+			visualization.flareData.nodes.visit(update); // update positions
 			updateEdgePoints(_t);
 		}
 		
@@ -135,7 +135,7 @@ package flare.vis.operator.layout
 		 */
 		protected function init():void
 		{
-			var data:Data = visualization.data, o:Object;
+			var data:Data = visualization.flareData, o:Object;
 			var p:Particle, s:Spring, n:NodeSprite, e:EdgeSprite;
 			
 			// initialize all simulation entries

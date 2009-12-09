@@ -57,16 +57,16 @@ package flare.vis.data.render
         // Shapes are scaled down by the amount of the linewidth area in the 
         // treemap layout to achieve smooth treemap nirvana.
           g.lineStyle(0.0, 0, 0);
-          if (lineColor == 0xffffffff) {
-            g.beginFill(0xffffff, fillAlpha); 
+          if (lineColor == 0xffffff && lineAlpha == 1.0) {
+            g.beginFill(lineColor, 0.99); 
           } else {
             g.beginFill(lineColor, lineAlpha);  
           }
           g.drawRect(d.u-d.x-d.lineWidth/2, d.v-d.y-d.lineWidth/2, d.w+d.lineWidth, d.h+d.lineWidth);
           // Rectangles with a white (0xffffffff) fill are rendered as transparent in flash graphics.
-          // The fill needs to be passed in as an RGB value with a fillAlpha instead of an ARGB value
-          if (fillColor == 0xffffffff) {
-            g.beginFill(0xffffff, fillAlpha); 
+          // We slightly decrease the alpha in these cases to avoid errors.
+          if (fillColor == 0xffffff && fillAlpha == 1.0) {
+            g.beginFill(fillColor, 0.99); 
           } else {
             g.beginFill(fillColor, fillAlpha);  
           }

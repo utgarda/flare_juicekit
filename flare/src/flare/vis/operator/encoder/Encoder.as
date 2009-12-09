@@ -85,7 +85,7 @@ package flare.vis.operator.encoder
 		public override function setup():void
 		{
 			if (visualization==null) return;
-			_binding.data = visualization.data;
+			_binding.data = visualization.flareData;
 		}
 		
 		/** @inheritDoc */
@@ -97,7 +97,7 @@ package flare.vis.operator.encoder
 			var p:Property = Property.$(_binding.property);
 			_binding.updateBinding();
 			
-			visualization.data.visit(function(d:DataSprite):void {
+			visualization.flareData.visit(function(d:DataSprite):void {
 				_t.setValue(d, _target, encode(p.getValue(d)));
 			}, _binding.group, _filter);
 			
@@ -123,9 +123,9 @@ package flare.vis.operator.encoder
  		 * instance's <code>data</code> property is non-null.
 		 */
 		protected function canBindToData():Boolean {
-		  if (visualization && visualization.data) {
-		    if (visualization.data !== _binding.data) {
-		      _binding.data = visualization.data;
+		  if (visualization && visualization.flareData) {
+		    if (visualization.flareData !== _binding.data) {
+		      _binding.data = visualization.flareData;
 		    }
 	      return true;
 		  }

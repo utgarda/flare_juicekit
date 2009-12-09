@@ -18,6 +18,8 @@ package flare.vis
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	
+	import mx.core.UIComponent;
 
 	[Event(name="update", type="flare.vis.events.VisualizationEvent")]
 
@@ -57,15 +59,15 @@ package flare.vis
 	 * 
 	 * @see flare.vis.operator
 	 */
-	public class Visualization extends Sprite
+	public class Visualization extends UIComponent
 	{	
 		// -- Properties ------------------------------------------------------
 		
 		private var _bounds:Rectangle = new Rectangle(0,0,500,500);
 		
-		private var _layers:Sprite; // sprite for all layers in visualization
-		private var _marks:Sprite;  // sprite for all visualized data items
-		private var _labels:Sprite; // (optional) sprite for labels
+		private var _layers:UIComponent; // sprite for all layers in visualization
+		private var _marks:UIComponent;  // sprite for all visualized data items
+		private var _labels:UIComponent; // (optional) sprite for labels
 		private var _axes:Axes;     // (optional) axes, lines, and axis labels
 		
 		private var _data:Data;     // data structure holding visualized data
@@ -89,14 +91,14 @@ package flare.vis
 		}
 		
 		/** Container sprite holding each layer in the visualization. */
-		public function get layers():Sprite { return _layers; }
+		public function get layers():UIComponent { return _layers; }
 		
 		/** Sprite containing the <code>DataSprite</code> instances. */
-		public function get marks():Sprite { return _marks; }
+		public function get marks():UIComponent { return _marks; }
 		
 		/** Sprite containing a separate layer for labels. Null by default. */
-		public function get labels():Sprite { return _labels; }
-		public function set labels(l:Sprite):void {
+		public function get labels():UIComponent { return _labels; }
+		public function set labels(l:UIComponent):void {
 			if (_labels != null)
 				_layers.removeChild(_labels);
 			_labels = l;
@@ -126,12 +128,12 @@ package flare.vis
 		public function get xyAxes():CartesianAxes { return _axes as CartesianAxes; }
 		
 		/** The visual data elements in this visualization. */
-		public function get data():Data { return _data; }
+		public function get flareData():Data { return _data; }
 		
 		/** Tree structure of visual data elements in this visualization.
 		 *  Generates a spanning tree over a graph structure, if necessary. */
 		public function get tree():Tree { return _data.tree; }
-		public function set data(d:Data):void
+		public function set flareData(d:Data):void
 		{
 			if (_data != null) {
 				_data.visit(_marks.removeChild);
@@ -177,13 +179,13 @@ package flare.vis
 		 *  Null by default; layout operators may re-configure the axes.
 		 */
 		public function Visualization(data:Data=null, axes:Axes=null) {
-			addChild(_layers = new Sprite());
+			addChild(_layers = new UIComponent());
 			_layers.name = "_layers";
 			
-			_layers.addChild(_marks = new Sprite()); 
+			_layers.addChild(_marks = new UIComponent()); 
 			_marks.name = "_marks";
 			
-			if (data != null) this.data = data;
+			if (data != null) this.flareData = data;
 			if (axes != null) this.axes = axes;
 			
 			_operators = new OperatorList();

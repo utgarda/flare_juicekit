@@ -324,9 +324,6 @@ package flare.vis.data
 						case ScaleType.UNKNOWN:
 							scale = new LinearScale(stats.minimum, stats.maximum, _base, _flush, _format);
 							break;
-						case ScaleType.LINEAR_PERCENTILE10:
-              scale = new LinearScale(stats.percentileLow, stats.percentileHigh, _base, _flush, _format);
-              break;
 						case ScaleType.ROOT:
 							var pow:Number = isNaN(_power) ? 2 : _power;
 							scale = new RootScale(stats.minimum, stats.maximum, _base, _flush, pow, _format);

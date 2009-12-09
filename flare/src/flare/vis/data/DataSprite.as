@@ -36,7 +36,7 @@ package flare.vis.data
 		/** The renderer for drawing this DataSprite. */
 		protected var _renderer:IRenderer = ShapeRenderer.instance;
 		/** Object storing backing data values. */
-		protected var _data:Object = {};
+		protected var __data:Object = {};
 		/** Object for attaching additional properties to this sprite. */
 		protected var _prop:Object = {};
 		
@@ -76,8 +76,8 @@ package flare.vis.data
 		public function set renderer(r:IRenderer):void { _renderer = r; dirty(); }
 		
 		/** Object storing backing data values. */
-		public function get data():Object { return _data; }
-		public function set data(d:Object):void { _data = d; }
+		public function get flaredata():Object { return __data; }
+		public function set flaredata(d:Object):void { __data = d; }
 		
 		/** Object for attaching additional properties to this sprite. */
 		public function get props():Object { return _prop; }

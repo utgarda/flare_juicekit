@@ -69,7 +69,7 @@ package flare.analytics.optimization
 			
 			// extract data
 			var v:Array = [];
-			visualization.data.nodes.visit(function(d:DataSprite):void {
+			visualization.flareData.nodes.visit(function(d:DataSprite):void {
 				v.push(_z.getValue(d));
 			});
 			

@@ -53,9 +53,9 @@ package flare.vis.operator.layout
 			var ux:Number, uy:Number, dx:Number, dy:Number;
 			
 			// compute edge bundles
-			for each (var e:EdgeSprite in visualization.data.edges) {
-				u = e.source; p1.push(pu=u); d1 = u.depth;
-				v = e.target; p2.push(pv=v); d2 = v.depth;
+			for each (var e:EdgeSprite in visualization.flareData.edges) {
+				u = e.source; p1.push(pu=u); d1 = u.ddepth;
+				v = e.target; p2.push(pv=v); d2 = v.ddepth;
 				
 				// trace paths to the least common ancestor of u,v
 				while (d1 > d2) { p1.push(pu=pu.parentNode); --d1; }

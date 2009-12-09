@@ -1,5 +1,6 @@
 package flare.vis.legend
 {
+	import flash.display.Sprite;
 	import flare.animate.Transitioner;
 	import flare.display.RectSprite;
 	import flare.display.TextSprite;
@@ -13,11 +14,8 @@ package flare.vis.legend
 	import flare.util.palette.SizePalette;
 	import flare.vis.data.ScaleBinding;
 	
-	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
-	
-	import mx.core.UIComponent;
 	
 	/**
 	 * A legend describing the visual encoding of a data property. Legends
@@ -54,7 +52,7 @@ package flare.vis.legend
 	 * See the documentation for the <code>buildFromValues</code> method
 	 * for more details.</p>
 	 */
-	public class Legend extends UIComponent
+	public class Legend extends Sprite
 	{
 		/** @private The layout bounds for this legend instance. */
 		protected var _bounds:Rectangle = null;

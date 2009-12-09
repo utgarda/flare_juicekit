@@ -77,7 +77,7 @@ package flare.vis.operator.distortion
 		{
 			_t = (t!=null ? t : Transitioner.DEFAULT);
 			_b = layoutBounds;
-			visualization.data.visit(distort, Data.NODES);
+			visualization.flareData.visit(distort, Data.NODES);
 			_t = null;
 			
 			if (distortAxes && visualization.xyAxes)

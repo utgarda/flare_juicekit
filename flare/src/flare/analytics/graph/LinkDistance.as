@@ -87,7 +87,7 @@ package flare.analytics.graph
 		/** @inheritDoc */
 		public override function operate(t:Transitioner=null):void
 		{
-			calculate(visualization.data, sources);
+			calculate(visualization.flareData, sources);
 		}
 			
 		/**

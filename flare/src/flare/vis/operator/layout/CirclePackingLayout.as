@@ -93,7 +93,7 @@ package flare.vis.operator.layout
 		{
 			_order = 0;
 			
-			var data:Data = visualization.data;
+			var data:Data = visualization.flareData;
 			data.nodes.setProperty("shape", Shapes.CIRCLE, _t);
 			data.nodes.setProperty("renderer", ShapeRenderer.instance, _t);
 			
@@ -131,7 +131,7 @@ package flare.vis.operator.layout
 				layoutHelper(root, _anchor.x, _anchor.y, scale);
 			} else {
 				// layout all circles directly
-				for each (var n:NodeSprite in visualization.data.group(group)) {	
+				for each (var n:NodeSprite in visualization.flareData.group(group)) {	
 					cn = n.props.chainNode;
 					update(n, _anchor.x + scale*cn.x,
 					          _anchor.y + scale*cn.y, scale, 1);

@@ -90,7 +90,7 @@ package flare.vis.operator.encoder
 		{
 			t = (t==null || _ignoreTrans ? Transitioner.DEFAULT : t);
 			if (_values == null) return;
-			var list:DataList = visualization.data.group(_group);
+			var list:DataList = visualization.flareData.group(_group);
 			list.setProperties(_values, t, _filter);
 		}
 		

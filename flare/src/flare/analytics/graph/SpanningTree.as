@@ -73,7 +73,7 @@ package flare.analytics.graph
 		/** @inheritDoc */
 		public function operate(t:Transitioner=null):void
 		{
-			super.calculate(visualization.data, root);
+			super.calculate(visualization.flareData, root);
 		}
 		
 		/** @inheritDoc */

@@ -1,8 +1,9 @@
 package flare.vis.axis
 {
-	import flash.display.Sprite;
 	import flare.animate.Transitioner;
 	import flare.vis.Visualization;
+	
+	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	
 	/**

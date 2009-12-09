@@ -44,7 +44,7 @@ package flare.analytics.cluster
 		/** @inheritDoc */
 		public override function operate(t:Transitioner=null):void
 		{
-			calculate(visualization.data.group(group), distance);
+			calculate(visualization.flareData.group(group), distance);
 		}
 		
 		/**

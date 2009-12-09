@@ -56,7 +56,7 @@ package flare.vis.operator.layout
 			var b:Rectangle = layoutBounds;
 			var r:Number = isNaN(radius) ? Math.min(b.width, b.height)/2 : radius;
 			var a:Number = startAngle, aw:Number;
-			var list:DataList = visualization.data.group(group);
+			var list:DataList = visualization.flareData.group(group);
 			var sum:Number = list.stats(_field.name).sum;
 			var anchor:Point = layoutAnchor;
 			

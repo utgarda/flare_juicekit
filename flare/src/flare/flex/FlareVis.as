@@ -49,7 +49,7 @@ package flare.flex
 			} else {
 				throw new Error("Unrecognized data set type: "+d);
 			}
-			_vis.data = dd;
+			_vis.flareData = dd;
 			_vis.operators.setup();
 			_vis.update();
 		}

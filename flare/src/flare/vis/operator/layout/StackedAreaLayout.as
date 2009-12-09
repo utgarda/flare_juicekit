@@ -169,7 +169,7 @@ package flare.vis.operator.layout
 	        }
 	        
 	        // perform second walk to compute polygon layout
-	        visualization.data.nodes.visit(function(d:NodeSprite):void
+	        visualization.flareData.nodes.visit(function(d:NodeSprite):void
 	        {
 	        	var obj:Object = _t.$(d);
 	        	var height:Number = 0, i:uint;
@@ -197,7 +197,7 @@ package flare.vis.operator.layout
 	        	// if visible, compute the new heights
 	            for (i=0; i<len; ++i) {
 	                var base:int = 2*(len+i), h:Number;
-	                var value:Number = d.data[_columns[i]];
+	                var value:Number = d.flaredata[_columns[i]];
 	                
 	                if (_normalize) {
 	                	_poly[base+ybias] += sign * hgt * Maths.invLinearInterp(value,0,_peaks[i]);
@@ -230,12 +230,12 @@ package flare.vis.operator.layout
 	        
 	        // first, compute max value of the current data
 	        Arrays.fill(_peaks, 0);
-	        visualization.data.nodes.visit(function(d:NodeSprite):void {
+	        visualization.flareData.nodes.visit(function(d:NodeSprite):void {
 	        	if (!d.visible || d.alpha <= 0 || !_t.$(d).visible)
 	        		return;
 	        	
 	        	for (var i:uint=0; i<_columns.length; ++i) {
-	        		var val:Number = d.data[_columns[i]];
+	        		var val:Number = d.flaredata[_columns[i]];
 	        		_peaks[i] += val;
 	        		sum += val;
 	        	}

@@ -90,7 +90,8 @@ package flare.vis.operator.layout
 		public function get layoutRoot():DataSprite {
 			if (_root != null) return _root;
 			if (visualization != null) {
-				return visualization.data.tree.root;
+				if (!visualization.flareData.tree) return null
+				return visualization.flareData.tree.root;
 			}
 			return null;
 		}
@@ -246,7 +247,7 @@ package flare.vis.operator.layout
 				clearEdgePoints();
 			} else {
 				_clear = false;
-				straightenEdges(visualization.data.edges, t);
+				straightenEdges(visualization.flareData.edges, t);
 				// after transition, clear out control points
 				if (_clear) {
 					var f:Function = function(evt:Event):void {
@@ -263,7 +264,7 @@ package flare.vis.operator.layout
 		 */
 		public function clearEdgePoints():void
 		{
-			visualization.data.edges["points"] = null;
+			visualization.flareData.edges["points"] = null;
 		}
 		
 	} // end of class Layout

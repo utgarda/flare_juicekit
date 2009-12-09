@@ -1,11 +1,12 @@
 package flare.display
 {
 	import flash.display.DisplayObject;
-	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	
+	import mx.core.UIComponent;
 	
 	/**
 	 * A Sprite that redraws itself as needed when marked as "dirty".
@@ -31,7 +32,7 @@ package flare.display
 	 * <code>renderDirty()</code> method can be invoked to manually force
 	 * each dirty sprite to be redrawn.</p>
 	 */
-	public class DirtySprite extends Sprite
+	public class DirtySprite extends UIComponent
 	{
 		private static var __stage:Stage;
 		private static var __installed:Boolean = false;

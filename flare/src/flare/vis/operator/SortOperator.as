@@ -52,7 +52,7 @@ package flare.vis.operator
 		/** @inheritDoc */
 		public override function operate(t:Transitioner=null):void
 		{
-			visualization.data.group(group).sortBy(_crit);
+			visualization.flareData.group(group).sortBy(_crit);
 		}
 		
 	} // end of class SortOperator

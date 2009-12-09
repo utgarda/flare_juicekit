@@ -131,14 +131,14 @@ package flare.vis.operator.layout
 		public override function setup():void
 		{
 			if (visualization==null) return;
-			_rBinding.data = visualization.data;
-			_aBinding.data = visualization.data;
+			_rBinding.data = visualization.flareData;
+			_aBinding.data = visualization.flareData;
 		}
 		
 		/** @inheritDoc */
 		protected override function layout():void
 		{			
-			var list:DataList = visualization.data.group(_group);
+			var list:DataList = visualization.flareData.group(_group);
 			var i:int = 0, N:int = list.length, dr:Number;
 			var visitor:Function = null;
 			
@@ -196,7 +196,7 @@ package flare.vis.operator.layout
 				};
 			}
 			if (visitor != null) list.visit(visitor);
-			if (treeLayout) _t.$(visualization.data.tree.root).radius = 0;
+			if (treeLayout) _t.$(visualization.flareData.tree.root).radius = 0;
 			
 			// finish up
 			updateEdgePoints(_t);
@@ -247,13 +247,13 @@ package flare.vis.operator.layout
 			
 			for each (n in visualization.tree.nodes) {
 				if (n.childDegree == 0) {
-					depth = Math.max(n.depth, depth);
+					depth = Math.max(n.ddepth, depth);
 					_t.$(n).radius = _outer;
 				}
 			}
 			for each (n in visualization.tree.nodes) {
 				if (n.childDegree != 0) {
-					_t.$(n).radius = _inner + (n.depth/depth) * dr;
+					_t.$(n).radius = _inner + (n.ddepth/depth) * dr;
 				}
 			}
 			

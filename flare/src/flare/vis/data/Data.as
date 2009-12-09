@@ -344,7 +344,7 @@ package flare.vis.data
 			}
 			var d:Boolean = directed==null ? directedEdges : Boolean(directed);
 			var e:EdgeSprite = newEdge(source, target, d, data);
-			if (data != null) e.data = data;
+			if (data != null) e.flaredata = data;
 			source.addOutEdge(e);
 			target.addInEdge(e);
 			return addEdge(e);
@@ -360,7 +360,7 @@ package flare.vis.data
 		{
 			var ns:NodeSprite = new NodeSprite();
 			_nodes.applyDefaults(ns);
-			if (data != null) { ns.data = data; }
+			if (data != null) { ns.flaredata = data; }
 			return ns;
 		}
 		
@@ -378,7 +378,7 @@ package flare.vis.data
 		{
 			var es:EdgeSprite = new EdgeSprite(s,t,d);
 			_edges.applyDefaults(es);
-			if (data != null) { es.data = data; }
+			if (data != null) { es.flaredata = data; }
 			return es;
 		}
 		
